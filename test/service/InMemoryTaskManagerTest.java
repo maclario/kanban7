@@ -12,16 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InMemoryTaskManagerTest {
-    private static InMemoryTaskManager manager;
-    private static Task task;
-    private static Subtask sub;
-    private static EpicTask epic;
-    private static Subtask subWithStatusDone;
-    private static Subtask subWithStatusInProgress;
+    protected TaskManager manager;
+    protected Task task;
+    protected Subtask sub;
+    protected EpicTask epic;
+    protected Subtask subWithStatusDone;
+    protected Subtask subWithStatusInProgress;
 
     @BeforeEach
     public void beforeEach() {
-        manager = new InMemoryTaskManager();
+        manager = Managers.getDefault();
 
         task = new Task("TaskTitle_1", "TaskDesc_1");
         manager.createTask(task);

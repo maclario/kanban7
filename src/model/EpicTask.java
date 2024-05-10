@@ -9,6 +9,10 @@ public class EpicTask extends Task {
         super(title, description);
     }
 
+    public TaskType getType() {
+        return TaskType.EPIC;
+    }
+
     public void addSubtask(Integer id) {
         subtasks.add(id);
     }
