@@ -27,21 +27,9 @@ public class InMemoryTaskManager implements TaskManager {
         return taskId;
     }
 
-    public void setTaskId(Integer value) {
-        this.taskId = value;
-    }
-
     @Override
     public Integer generateId() {
         return ++taskId;
-    }
-
-    protected void defineTypeAndAddToRelevantStorage(Task task) {
-        switch (task.getType()) {
-            case EPIC -> allEpicTasks.put(task.getId(), (EpicTask) task);
-            case SUBTASK -> allSubtasks.put(task.getId(), (Subtask) task);
-            case TASK -> allTasks.put(task.getId(), task);
-        }
     }
 
     @Override

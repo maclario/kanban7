@@ -73,12 +73,20 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 epic.addSubtask(subtask.getId());
             }
 
-            taskManager.setTaskId(lastId);
+            taskManager.taskId = lastId;
 
         } catch (IOException e) {
             throw new LoadingFromFileException("Ошибка чтения/загрузки из файла.", e);
         }
         return taskManager;
+    }
+
+    private void defineTypeAndAddToRelevantStorage(Task task) {
+        switch (task.getType()) {
+            case EPIC -> allEpicTasks.put(task.getId(), (EpicTask) task);
+            case SUBTASK -> allSubtasks.put(task.getId(), (Subtask) task);
+            case TASK -> allTasks.put(task.getId(), task);
+        }
     }
 
     @Override

@@ -29,26 +29,12 @@ public class CSVFormatter {
         final TaskStatus status = TaskStatus.valueOf(attributes[3]);
         final String description = attributes[4];
 
-        switch (taskType) {
-            case TASK:
-                Task tempTask = new Task(title, description);
-                tempTask.setId(id);
-                tempTask.setStatus(status);
-                return tempTask;
-            case EPIC:
-                EpicTask tempEpic = new EpicTask(title, description);
-                tempEpic.setId(id);
-                tempEpic.setStatus(status);
-                return tempEpic;
-            case SUBTASK:
-                int epicId = Integer.parseInt(attributes[5]);
-                Subtask tempSubtask = new Subtask(title, description, epicId);
-                tempSubtask.setId(id);
-                tempSubtask.setStatus(status);
-                return tempSubtask;
-            default:
-                throw new IllegalArgumentException("Ошибка получения типа задачи.");
-        }
+        return switch (taskType) {
+            case TASK -> new Task(id, title, description, status);
+            case EPIC -> new EpicTask(id, title, description, status);
+            case SUBTASK -> new Subtask(id, title, description, status, Integer.parseInt(attributes[5]));
+            default -> throw new IllegalArgumentException("Ошибка получения типа задачи.");
+        };
     }
 
 }
