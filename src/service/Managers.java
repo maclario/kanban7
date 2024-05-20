@@ -1,8 +1,10 @@
 package service;
 
+import java.io.File;
+
 public class Managers {
     public static TaskManager getDefault() {
-        return new InMemoryTaskManager();
+        return new FileBackedTaskManager(new File("resources/backupFile.csv"));
     }
 
     public static HistoryManager getDefaultHistory() {

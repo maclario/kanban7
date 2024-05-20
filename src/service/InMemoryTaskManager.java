@@ -11,11 +11,11 @@ import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    private HashMap<Integer, Task> allTasks = new HashMap<>();
-    private HashMap<Integer, EpicTask> allEpicTasks = new HashMap<>();
-    private HashMap<Integer, Subtask> allSubtasks = new HashMap<>();
-    private HistoryManager history = Managers.getDefaultHistory();
-    private Integer taskId = 0;
+    protected HashMap<Integer, Task> allTasks = new HashMap<>();
+    protected HashMap<Integer, EpicTask> allEpicTasks = new HashMap<>();
+    protected HashMap<Integer, Subtask> allSubtasks = new HashMap<>();
+    protected HistoryManager history = Managers.getDefaultHistory();
+    protected Integer taskId = 0;
 
     @Override
     public List<Task> getHistory() {
